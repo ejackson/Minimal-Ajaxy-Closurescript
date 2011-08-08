@@ -1,6 +1,8 @@
 (ns multiplier
   (:require
    [cljs.reader :as reader]
+   [goog.Uri :as uri]
+   [goog.Uri.QueryData :as qrd]
    [goog.dom :as dom]
    [goog.events :as ev]
    [goog.string :as gstr]
@@ -8,8 +10,15 @@
    [goog.net.XhrIo :as xhr]))      
 
 ;; HTTP Stuff
+(defn form-uri [form]
+  (let  [uri (goog.Uri. "http://localhost:9090")
+         qr  (. uri (getQueryData))]
+    (.add qr "form" (pr-str form))
+    (.setPath uri "multiply")))
+
 (defn- multiply-api [form]
-  (str "http://localhost:9090/multiply?form=" (pr-str form)))
+  (. (form-uri form) (toString))
+  #_(str "http://localhost:9090/multiply?form=" (pr-str form)))
 
 (defn- extract-response [message]
   (reader/read-string
