@@ -1,0 +1,27 @@
+<html>
+<link type="text/css" rel="stylesheet" href="css/edmund.css">
+<link type="text/css" rel="stylesheet" href="css/common.css">
+<link type="text/css" rel="stylesheet" href="css/demo.css">
+
+<script type="text/javascript" src="out/goog/base.js"></script>
+<script type="text/javascript" src="multiplier.js"></script>
+<script type="text/javascript">
+  goog.require('multiplier');
+</script>
+
+
+<body>
+
+  <input id="multiplier" value="" type="text" class="mults" placeholder="Multiplier..." autofocus />
+  <input id="multiplicand" value="" type="text" class="mults" placeholder="Multiplicand..."/>
+  <button id="multiply-button" type="submit" class="button green">Multiply</button>
+  <span id="product"></span>
+
+<!-- Call the javascript -->
+<script>
+multiplier.main();
+</script>
+
+</body>
+</html>
+
