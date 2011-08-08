@@ -10,15 +10,16 @@
    [goog.net.XhrIo :as xhr]))      
 
 ;; HTTP Stuff
-(defn form-uri [form]
+(defn- form-uri
+  "Note nasty side effect code in here."
+  [form]
   (let  [uri (goog.Uri. "http://localhost:9090")
          qr  (. uri (getQueryData))]
     (.add qr "form" (pr-str form))
     (.setPath uri "multiply")))
 
 (defn- multiply-api [form]
-  (. (form-uri form) (toString))
-  #_(str "http://localhost:9090/multiply?form=" (pr-str form)))
+  (. (form-uri form) (toString)))
 
 (defn- extract-response [message]
   (reader/read-string
